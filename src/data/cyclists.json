@@ -1,0 +1,98 @@
+[
+  {
+    "id": "c1",
+    "name": "Tadej Pogačar",
+    "team": "UAE Team Emirates",
+    "nationality": "Slovenia",
+    "birth_date": "1998-09-21",
+    "height": 176,
+    "weight": 66,
+    "photo_url": null,
+    "specialty": "All-Rounder",
+    "professional_since": 2019
+  },
+  {
+    "id": "c2",
+    "name": "Jonas Vingegaard",
+    "team": "Visma-Lease a Bike",
+    "nationality": "Denmark",
+    "birth_date": "1996-12-10",
+    "height": 175,
+    "weight": 60,
+    "photo_url": null,
+    "specialty": "Climber",
+    "professional_since": 2019
+  },
+  {
+    "id": "c3",
+    "name": "Wout van Aert",
+    "team": "Visma-Lease a Bike",
+    "nationality": "Belgium",
+    "birth_date": "1994-09-15",
+    "height": 187,
+    "weight": 78,
+    "photo_url": null,
+    "specialty": "All-Rounder",
+    "professional_since": 2019
+  },
+  {
+    "id": "c4",
+    "name": "Mathieu van der Poel",
+    "team": "Alpecin-Deceuninck",
+    "nationality": "Netherlands",
+    "birth_date": "1995-01-19",
+    "height": 184,
+    "weight": 75,
+    "photo_url": null,
+    "specialty": "Puncheur",
+    "professional_since": 2019
+  },
+  {
+    "id": "c5",
+    "name": "Remco Evenepoel",
+    "team": "Soudal Quick-Step",
+    "nationality": "Belgium",
+    "birth_date": "2000-01-25",
+    "height": 171,
+    "weight": 61,
+    "photo_url": null,
+    "specialty": "Time Trialist",
+    "professional_since": 2019
+  },
+  {
+    "id": "c6",
+    "name": "Jasper Philipsen",
+    "team": "Alpecin-Deceuninck",
+    "nationality": "Belgium",
+    "birth_date": "1998-03-02",
+    "height": 178,
+    "weight": 75,
+    "photo_url": null,
+    "specialty": "Sprinter",
+    "professional_since": 2020
+  },
+  {
+    "id": "c7",
+    "name": "Primož Roglič",
+    "team": "Red Bull-BORA-hansgrohe",
+    "nationality": "Slovenia",
+    "birth_date": "1989-10-29",
+    "height": 177,
+    "weight": 65,
+    "photo_url": null,
+    "specialty": "Climber",
+    "professional_since": 2016
+  },
+  {
+    "id": "c8",
+    "name": "Filippo Ganna",
+    "team": "INEOS Grenadiers",
+    "nationality": "Italy",
+    "birth_date": "1996-07-25",
+    "height": 193,
+    "weight": 82,
+    "photo_url": null,
+    "specialty": "Time Trialist",
+    "professional_since": 2019
+  }
+]

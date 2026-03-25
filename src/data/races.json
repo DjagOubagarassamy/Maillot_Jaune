@@ -1,0 +1,42 @@
+[
+  {
+    "id": "r1",
+    "name": "Tour de France - Stage 1",
+    "date": "2025-07-05",
+    "location": "Lille, France",
+    "distance": 185,
+    "race_type": "Stage Race"
+  },
+  {
+    "id": "r2",
+    "name": "Paris-Roubaix",
+    "date": "2025-04-13",
+    "location": "Roubaix, France",
+    "distance": 257,
+    "race_type": "One-Day Race"
+  },
+  {
+    "id": "r3",
+    "name": "Milano-Sanremo",
+    "date": "2025-03-22",
+    "location": "Sanremo, Italy",
+    "distance": 294,
+    "race_type": "One-Day Race"
+  },
+  {
+    "id": "r4",
+    "name": "Tour de France - ITT Stage 7",
+    "date": "2025-07-11",
+    "location": "Gevrey-Chambertin, France",
+    "distance": 25,
+    "race_type": "Time Trial"
+  },
+  {
+    "id": "r5",
+    "name": "Tour de France - Stage 14 (Tourmalet)",
+    "date": "2025-07-19",
+    "location": "Col du Tourmalet, France",
+    "distance": 152,
+    "race_type": "Mountain Stage"
+  }
+]

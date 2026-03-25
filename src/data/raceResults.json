@@ -1,0 +1,24 @@
+[
+  { "id": "rr1", "race_id": "r1", "cyclist_id": "c6", "position": 1, "time": "4h 12m 33s", "points": 50 },
+  { "id": "rr2", "race_id": "r1", "cyclist_id": "c3", "position": 2, "time": "4h 12m 33s", "points": 30 },
+  { "id": "rr3", "race_id": "r1", "cyclist_id": "c4", "position": 3, "time": "4h 12m 35s", "points": 20 },
+  { "id": "rr4", "race_id": "r1", "cyclist_id": "c1", "position": 4, "time": "4h 12m 35s", "points": 15 },
+
+  { "id": "rr5", "race_id": "r2", "cyclist_id": "c4", "position": 1, "time": "5h 46m 22s", "points": 50 },
+  { "id": "rr6", "race_id": "r2", "cyclist_id": "c3", "position": 2, "time": "5h 46m 28s", "points": 30 },
+  { "id": "rr7", "race_id": "r2", "cyclist_id": "c6", "position": 3, "time": "5h 46m 45s", "points": 20 },
+
+  { "id": "rr8", "race_id": "r3", "cyclist_id": "c6", "position": 1, "time": "6h 38m 04s", "points": 50 },
+  { "id": "rr9", "race_id": "r3", "cyclist_id": "c4", "position": 2, "time": "6h 38m 04s", "points": 30 },
+  { "id": "rr10", "race_id": "r3", "cyclist_id": "c3", "position": 3, "time": "6h 38m 07s", "points": 20 },
+
+  { "id": "rr11", "race_id": "r4", "cyclist_id": "c5", "position": 1, "time": "28m 15s", "points": 50 },
+  { "id": "rr12", "race_id": "r4", "cyclist_id": "c8", "position": 2, "time": "28m 32s", "points": 30 },
+  { "id": "rr13", "race_id": "r4", "cyclist_id": "c1", "position": 3, "time": "28m 45s", "points": 20 },
+  { "id": "rr14", "race_id": "r4", "cyclist_id": "c2", "position": 4, "time": "29m 01s", "points": 15 },
+
+  { "id": "rr15", "race_id": "r5", "cyclist_id": "c1", "position": 1, "time": "4h 01m 12s", "points": 50 },
+  { "id": "rr16", "race_id": "r5", "cyclist_id": "c2", "position": 2, "time": "4h 01m 45s", "points": 30 },
+  { "id": "rr17", "race_id": "r5", "cyclist_id": "c7", "position": 3, "time": "4h 02m 10s", "points": 20 },
+  { "id": "rr18", "race_id": "r5", "cyclist_id": "c5", "position": 4, "time": "4h 02m 33s", "points": 15 }
+]
