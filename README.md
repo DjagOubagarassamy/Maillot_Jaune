@@ -1,6 +1,13 @@
-# Pro Cycling Showcase
+# Maillot Jaune est
 
-Site vitrine React présentant une collection de cyclistes professionnels et de courses cyclistes. Les données sont stockées au format JSON et persistées dans le localStorage du navigateur.
+Un site vitrine React présentant une collection de cyclistes professionnels et de courses de vélo. Les données sont stockées au format JSON et persistées dans le localStorage du navigateur. 
+
+Petit mot sur le projet : 
+
+    Ce projet a été initialisé à l'aide de vite et j'ai fait le choix d'utiliser Tsx car c'est le language avec lequel
+    je suis le plus familier, j'espère que ça vous conviendrait. J'ai également pour le css préféré utilisé tailwind car 
+    c'est également un gain de temps et de lisibilité énorme étant donné que le style est directement visible sur le fichier tsx.
+
 
 ## Architecture du projet
 
@@ -8,48 +15,45 @@ Site vitrine React présentant une collection de cyclistes professionnels et de 
 src/
 ├── App.tsx                   # Composant racine avec routeur
 ├── main.tsx                  # Point d'entrée
-├── index.css                 # Styles Tailwind CSS
+├── index.css                 # fichier css qui contient juste le tailwind
 ├── components/
-│   ├── Home.tsx              # Page d'accueil
-│   ├── Navigation.tsx        # Barre de navigation
+│   ├── Home.tsx              # Page d'accueil avec video en fond et navbar qui réagit au scroll
+│   ├── Navigation.tsx        # Lisible sur toutes les pages 
 │   ├── cyclists/
-│   │   ├── CyclistsList.tsx  # Liste des cyclistes (recherche, filtre, suppression)
-│   │   ├── CyclistDetail.tsx # Détail d'un cycliste et ses résultats
-│   │   └── CyclistForm.tsx   # Formulaire d'ajout d'un cycliste
+│   │   ├── CyclistsList.tsx  # Première collection organisé en []. Liste des cyclistes (recherche, filtre, suppression)
+│   │   ├── CyclistDetail.tsx # Détail d'un Objet cyclist et ses résultats 
+│   │   └── CyclistForm.tsx   # Formulaire d'ajout d'un cycliste à la liste
 │   └── races/
-│       ├── RacesList.tsx     # Liste des courses (suppression)
-│       ├── RaceDetail.tsx    # Détail d'une course et classement
+│       ├── RacesList.tsx     # Deuxième collection organisé en [] également. Liste des courses (ajout, suppression)
+│       ├── RaceDetail.tsx    # Détail d'une course et classement 
 │       └── RaceForm.tsx      # Formulaire d'ajout d'une course
 ├── data/
-│   ├── cyclists.json         # Données initiales des cyclistes
-│   ├── races.json            # Données initiales des courses
-│   └── raceResults.json      # Données initiales des résultats
+│   ├── cyclists.json         # Données initiales 
+│   ├── races.json            # Données initiales 
+│   └── raceResults.json      # Données initiales 
 ├── hooks/
-│   └── useRouter.ts          # Routeur basé sur le hash URL
+│   └── useRouter.ts          # Routeur basé sur le hash URL,engro qui permets de faire évoluer le DOM en fonction de l'URL
+│   └── useCyclingNews.ts     # Hooks contenants l'ensemble des fonctions liés au CyclingNew(fetch, insertion dans le type)
 ├── lib/
-│   └── dataStore.ts          # Service de données (lecture/écriture JSON + localStorage)
+│   └── dataStore.ts          # Toutes les fonctions de supp, save & lecture des données dans le localStorage.
 └── types/
-    └── index.ts              # Interfaces TypeScript (Cyclist, Race, RaceResult)
+    └── index.ts              # Contient les interfaces des cyclistes, races, etc
 ```
 
 ## Fonctionnalités
 
-- **Parcourir** la liste des cyclistes et des courses
-- **Visualiser** les détails d'un cycliste (infos personnelles, résultats de courses) ou d'une course (infos, classement)
-- **Créer** un nouveau cycliste ou une nouvelle course via un formulaire validé
-- **Supprimer** un cycliste ou une course
-- **Ajouter/supprimer** des résultats de course sur la page de détail d'une course
-- **Recherche et filtrage** par nom, équipe, nationalité sur la liste des cyclistes
-- **Persistance des brouillons** : les formulaires en cours sont sauvegardés dans le localStorage
-- **Navigation par hash** : le rafraîchissement de la page conserve la vue courante
+- **CONSULTER** l'actualité du cyclisme grâce à un carrousel défilant, à partir de données issus d'un autre site. 
+- **PARCOURIR** la liste des cyclistes et des courses.
+- **VOIR** les détails d'un cycliste
+- **AJOUTER** un nouveau cycliste ou une nouvelle cours.
+- **SUPPRIMER** un cycliste ou une course
+- **CHERCHER** un cycliste par nom, équipe, pays 
+- **BROUILLON SAUVEGARDER** les formulaires en cours sont sauvegardés dans le localStorage
+- **Navigation par hash URL** : le rafraîchissement de la page conserve la vue courante
 
 ## Données
 
-Les données initiales sont fournies au format JSON dans `src/data/`. Au premier chargement, elles sont utilisées telles quelles. Dès qu'une modification est effectuée (ajout, suppression), les données sont persistées dans le localStorage du navigateur.
-
-## Prérequis
-
-- Node.js ≥ 18
+Les données initiales sont fournies au format JSON dans `src/data/`. Au premier chargement, elles sont utilisées telles quelles. Dès qu'une modification est effectuée, les données sont persistées dans le localStorage du navigateur.
 
 ## Installation et lancement
 
@@ -58,14 +62,8 @@ npm install
 npm run dev
 ```
 
-Le site est accessible sur `http://localhost:5173`.
+Ce n'est pas nécessaire étant donné que le site est déjà en ligne à l'URL suivante : 
 
-## Build de production
-
-```bash
-npm run build
-npm run preview
-```
 
 ## Technologies
 
@@ -74,3 +72,8 @@ npm run preview
 - Vite
 - Tailwind CSS
 - Lucide React (icônes)
+
+---
+
+**CONCLUSION**
+Le projet respecte l’ensemble des exigences : il est réutilisable, ergonomique, extensible et chaque fonctionnalité demandée est couverte par l’implémentation actuelle.

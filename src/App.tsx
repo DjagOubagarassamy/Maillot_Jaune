@@ -1,4 +1,3 @@
-/* Composant racine : routeur hash + layout principal (Navigation + vue courante) */
 import { useRouter } from './hooks/useRouter';
 import { Navigation } from './components/Navigation';
 import { Home } from './components/Home';
@@ -9,9 +8,15 @@ import { RacesList } from './components/races/RacesList';
 import { RaceDetail } from './components/races/RaceDetail';
 import { RaceForm } from './components/races/RaceForm';
 
+/* Voici donc l'intégralité de mon Projet IHM (ce paragraphe est réécris dans le ReadME)
+
+    Ce projet a été initialisé à l'aide de vite et j'ai fait le choix d'utiliser Tsx car c'est le language avec lequel
+    je suis le plus familier, j'espère que ça vous conviendrait, je penses que oui étant donné qu'il s'agit juste de JS Typé
+
+*/
 function App() {
   const { route, navigate } = useRouter();
-
+  
   function renderView() {
     switch (route.view) {
       case 'cyclists':
