@@ -1,3 +1,4 @@
+/* Définitions TypeScript : interfaces Cyclist, Race, RaceResult et constantes de spécialités/types */
 export interface Cyclist {
   id: string;
   name: string;

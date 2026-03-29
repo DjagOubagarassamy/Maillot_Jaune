@@ -1,3 +1,4 @@
+/* Hook de routage hash : parse l'URL, gère la navigation entre vues (home, cyclists, races) */
 import { useState, useEffect } from 'react';
 
 export interface RouteParams {

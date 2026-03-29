@@ -19,6 +19,7 @@ const initialFormData: Omit<Race, 'id'> = {
   race_type: '',
 };
 
+/* L'autre formulaire du site : qui gère l'ajout d'une course : validation, brouillon localStorage et soumission */
 export function RaceForm({ onNavigate }: RaceFormProps) {
   const [formData, setFormData] = useState<Omit<Race, 'id'>>(initialFormData);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -57,23 +58,23 @@ export function RaceForm({ onNavigate }: RaceFormProps) {
     const newErrors: Record<string, string> = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Race name is required';
+      newErrors.name = 'Le nom de la course est requis';
     }
 
     if (!formData.date) {
-      newErrors.date = 'Date is required';
+      newErrors.date = 'La date est requise';
     }
 
     if (!formData.location.trim()) {
-      newErrors.location = 'Location is required';
+      newErrors.location = 'Le lieu est requis';
     }
 
     if (!formData.distance || formData.distance < 1 || formData.distance > 500) {
-      newErrors.distance = 'Distance must be between 1 and 500 km';
+      newErrors.distance = 'La distance doit être comprise entre 1 et 500 km';
     }
 
     if (!formData.race_type) {
-      newErrors.race_type = 'Race type is required';
+      newErrors.race_type = 'Le type de course est requis';
     }
 
     setErrors(newErrors);
@@ -99,44 +100,44 @@ export function RaceForm({ onNavigate }: RaceFormProps) {
       onNavigate({ view: 'races', action: 'list' });
     } catch (error) {
       console.error('Error saving race:', error);
-      alert('Failed to save race. Please try again.');
+      alert('Erreur lors de l\'enregistrement de la course. Veuillez réessayer.');
     } finally {
       setSaving(false);
     }
   }
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-gray-50 py-8">
+    <div className="min-h-[calc(100vh-4rem)] bg-gray-950 py-8">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <button
           onClick={() => {
             if (Object.values(formData).some(val => val !== '' && val !== 0)) {
-              if (!confirm('You have unsaved changes. Are you sure you want to leave?')) {
+              if (!confirm('Vous avez des modifications non sauvegardées. Voulez-vous vraiment quitter ?')) {
                 return;
               }
             }
             onNavigate({ view: 'races', action: 'list' });
           }}
-          className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-6 font-medium"
+          className="flex items-center gap-2 text-primary hover:text-primary/80 mb-6 font-medium"
         >
           <ArrowLeft className="w-5 h-5" />
-          Back to Races
+          Retour aux courses
         </button>
 
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-6">Add New Race</h1>
+        <div className="bg-gray-800 rounded-lg shadow-lg p-8">
+          <h1 className="text-3xl font-bold text-white mb-6">Ajouter une course</h1>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Race Name *
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Nom de la course *
               </label>
               <input
                 type="text"
                 value={formData.name}
                 onChange={(e) => handleChange('name', e.target.value)}
-                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                  errors.name ? 'border-red-500' : 'border-gray-300'
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-700 text-white placeholder-gray-400 ${
+                  errors.name ? 'border-red-500' : 'border-gray-600'
                 }`}
                 placeholder="e.g., Tour de France Stage 10"
               />
@@ -145,30 +146,30 @@ export function RaceForm({ onNavigate }: RaceFormProps) {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Date *
                 </label>
                 <input
                   type="date"
                   value={formData.date}
                   onChange={(e) => handleChange('date', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.date ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-700 text-white ${
+                    errors.date ? 'border-red-500' : 'border-gray-600'
                   }`}
                 />
                 {errors.date && <p className="mt-1 text-sm text-red-600">{errors.date}</p>}
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Location *
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Lieu *
                 </label>
                 <input
                   type="text"
                   value={formData.location}
                   onChange={(e) => handleChange('location', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.location ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-700 text-white placeholder-gray-400 ${
+                    errors.location ? 'border-red-500' : 'border-gray-600'
                   }`}
                   placeholder="e.g., France"
                 />
@@ -176,15 +177,15 @@ export function RaceForm({ onNavigate }: RaceFormProps) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Distance (km) *
                 </label>
                 <input
                   type="number"
                   value={formData.distance || ''}
                   onChange={(e) => handleChange('distance', e.target.value ? Number(e.target.value) : 0)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.distance ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-700 text-white placeholder-gray-400 ${
+                    errors.distance ? 'border-red-500' : 'border-gray-600'
                   }`}
                   placeholder="e.g., 180"
                   min="1"
@@ -194,17 +195,17 @@ export function RaceForm({ onNavigate }: RaceFormProps) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Race Type *
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Type de course *
                 </label>
                 <select
                   value={formData.race_type}
                   onChange={(e) => handleChange('race_type', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.race_type ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-700 text-white ${
+                    errors.race_type ? 'border-red-500' : 'border-gray-600'
                   }`}
                 >
-                  <option value="">Select a race type</option>
+                  <option value="">Choisir un type de course</option>
                   {RACE_TYPES.map((type) => (
                     <option key={type} value={type}>
                       {type}
@@ -219,22 +220,22 @@ export function RaceForm({ onNavigate }: RaceFormProps) {
               <button
                 type="submit"
                 disabled={saving}
-                className="flex-1 flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 flex items-center justify-center gap-2 bg-primary text-gray-900 px-6 py-3 rounded-lg hover:bg-primary/80 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Save className="w-5 h-5" />
-                {saving ? 'Saving...' : 'Save Race'}
+                {saving ? 'Enregistrement...' : 'Enregistrer la course'}
               </button>
               <button
                 type="button"
                 onClick={() => {
-                  if (confirm('Are you sure you want to cancel?')) {
+                  if (confirm('Êtes-vous sûr de vouloir annuler ?')) {
                     localStorage.removeItem(FORM_STORAGE_KEY);
                     onNavigate({ view: 'races', action: 'list' });
                   }
                 }}
-                className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+                className="px-6 py-3 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors font-medium"
               >
-                Cancel
+                Annuler
               </button>
             </div>
           </form>

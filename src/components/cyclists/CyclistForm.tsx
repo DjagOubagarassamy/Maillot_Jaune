@@ -5,6 +5,8 @@ import { CYCLIST_SPECIALTIES } from '../../types';
 import type { Cyclist } from '../../types';
 import type { RouteParams } from '../../hooks/useRouter';
 
+/* Ce fichier contient le formulaire d'ajout d'un coureur : validation, brouillon localStorage et soumission */
+
 interface CyclistFormProps {
   onNavigate: (params: RouteParams) => void;
 }
@@ -61,42 +63,42 @@ export function CyclistForm({ onNavigate }: CyclistFormProps) {
     const newErrors: Record<string, string> = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = 'Le nom est requis';
     }
 
     if (!formData.team.trim()) {
-      newErrors.team = 'Team is required';
+      newErrors.team = "L'équipe est requise";
     }
 
     if (!formData.nationality.trim()) {
-      newErrors.nationality = 'Nationality is required';
+      newErrors.nationality = 'La nationalité est requise';
     }
 
     if (!formData.birth_date) {
-      newErrors.birth_date = 'Birth date is required';
+      newErrors.birth_date = 'La date de naissance est requise';
     } else {
       const birthDate = new Date(formData.birth_date);
       const today = new Date();
       const age = today.getFullYear() - birthDate.getFullYear();
       if (age < 16 || age > 60) {
-        newErrors.birth_date = 'Cyclist must be between 16 and 60 years old';
+        newErrors.birth_date = 'Le coureur doit avoir entre 16 et 60 ans';
       }
     }
 
     if (!formData.height || formData.height < 150 || formData.height > 220) {
-      newErrors.height = 'Height must be between 150 and 220 cm';
+      newErrors.height = 'La taille doit être comprise entre 150 et 220 cm';
     }
 
     if (!formData.weight || formData.weight < 50 || formData.weight > 120) {
-      newErrors.weight = 'Weight must be between 50 and 120 kg';
+      newErrors.weight = 'Le poids doit être compris entre 50 et 120 kg';
     }
 
     if (!formData.specialty) {
-      newErrors.specialty = 'Specialty is required';
+      newErrors.specialty = 'La spécialité est requise';
     }
 
     if (!formData.professional_since || formData.professional_since < 1980 || formData.professional_since > new Date().getFullYear()) {
-      newErrors.professional_since = 'Please enter a valid year';
+      newErrors.professional_since = 'Veuillez saisir une année valide';
     }
 
     setErrors(newErrors);
@@ -124,45 +126,45 @@ export function CyclistForm({ onNavigate }: CyclistFormProps) {
       onNavigate({ view: 'cyclists', action: 'list' });
     } catch (error) {
       console.error('Error saving cyclist:', error);
-      alert('Failed to save cyclist. Please try again.');
+      alert('Erreur lors de l\'enregistrement du coureur. Veuillez réessayer.');
     } finally {
       setSaving(false);
     }
   }
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-gray-50 py-8">
+    <div className="min-h-[calc(100vh-4rem)] bg-gray-950 py-8">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <button
           onClick={() => {
             if (Object.values(formData).some(val => val !== '' && val !== 0 && val !== null)) {
-              if (!confirm('You have unsaved changes. Are you sure you want to leave?')) {
+              if (!confirm('Vous avez des modifications non sauvegardées. Voulez-vous vraiment quitter ?')) {
                 return;
               }
             }
             onNavigate({ view: 'cyclists', action: 'list' });
           }}
-          className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-6 font-medium"
+          className="flex items-center gap-2 text-primary hover:text-primary/80 mb-6 font-medium"
         >
           <ArrowLeft className="w-5 h-5" />
-          Back to Cyclists
+          Retour aux coureurs
         </button>
 
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-6">Add New Cyclist</h1>
+        <div className="bg-gray-800 rounded-lg shadow-lg p-8">
+          <h1 className="text-3xl font-bold text-white mb-6">Ajouter un coureur</h1>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Full Name *
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Nom complet *
                 </label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => handleChange('name', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.name ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-700 text-white placeholder-gray-400 ${
+                    errors.name ? 'border-red-500' : 'border-gray-600'
                   }`}
                   placeholder="e.g., Tadej Pogačar"
                 />
@@ -170,15 +172,15 @@ export function CyclistForm({ onNavigate }: CyclistFormProps) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Team *
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Équipe *
                 </label>
                 <input
                   type="text"
                   value={formData.team}
                   onChange={(e) => handleChange('team', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.team ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-700 text-white placeholder-gray-400 ${
+                    errors.team ? 'border-red-500' : 'border-gray-600'
                   }`}
                   placeholder="e.g., UAE Team Emirates"
                 />
@@ -186,15 +188,15 @@ export function CyclistForm({ onNavigate }: CyclistFormProps) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Nationality *
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Nationalité *
                 </label>
                 <input
                   type="text"
                   value={formData.nationality}
                   onChange={(e) => handleChange('nationality', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.nationality ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-700 text-white placeholder-gray-400 ${
+                    errors.nationality ? 'border-red-500' : 'border-gray-600'
                   }`}
                   placeholder="e.g., Slovenia"
                 />
@@ -202,30 +204,30 @@ export function CyclistForm({ onNavigate }: CyclistFormProps) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Birth Date *
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Date de naissance *
                 </label>
                 <input
                   type="date"
                   value={formData.birth_date}
                   onChange={(e) => handleChange('birth_date', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.birth_date ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-700 text-white ${
+                    errors.birth_date ? 'border-red-500' : 'border-gray-600'
                   }`}
                 />
                 {errors.birth_date && <p className="mt-1 text-sm text-red-600">{errors.birth_date}</p>}
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Height (cm) *
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Taille (cm) *
                 </label>
                 <input
                   type="number"
                   value={formData.height || ''}
                   onChange={(e) => handleChange('height', e.target.value ? Number(e.target.value) : 0)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.height ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-700 text-white placeholder-gray-400 ${
+                    errors.height ? 'border-red-500' : 'border-gray-600'
                   }`}
                   placeholder="e.g., 176"
                   min="150"
@@ -235,15 +237,15 @@ export function CyclistForm({ onNavigate }: CyclistFormProps) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Weight (kg) *
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Poids (kg) *
                 </label>
                 <input
                   type="number"
                   value={formData.weight || ''}
                   onChange={(e) => handleChange('weight', e.target.value ? Number(e.target.value) : 0)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.weight ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-700 text-white placeholder-gray-400 ${
+                    errors.weight ? 'border-red-500' : 'border-gray-600'
                   }`}
                   placeholder="e.g., 66"
                   min="50"
@@ -253,17 +255,17 @@ export function CyclistForm({ onNavigate }: CyclistFormProps) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Specialty *
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Spécialité *
                 </label>
                 <select
                   value={formData.specialty}
                   onChange={(e) => handleChange('specialty', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.specialty ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-700 text-white ${
+                    errors.specialty ? 'border-red-500' : 'border-gray-600'
                   }`}
                 >
-                  <option value="">Select a specialty</option>
+                  <option value="">Choisir une spécialité</option>
                   {CYCLIST_SPECIALTIES.map((specialty) => (
                     <option key={specialty} value={specialty}>
                       {specialty}
@@ -274,15 +276,15 @@ export function CyclistForm({ onNavigate }: CyclistFormProps) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Professional Since *
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Professionnel depuis *
                 </label>
                 <input
                   type="number"
                   value={formData.professional_since || ''}
                   onChange={(e) => handleChange('professional_since', e.target.value ? Number(e.target.value) : new Date().getFullYear())}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.professional_since ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-700 text-white placeholder-gray-400 ${
+                    errors.professional_since ? 'border-red-500' : 'border-gray-600'
                   }`}
                   placeholder="e.g., 2019"
                   min="1980"
@@ -293,14 +295,14 @@ export function CyclistForm({ onNavigate }: CyclistFormProps) {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Photo URL (optional)
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                URL de la photo (optionnel)
               </label>
               <input
                 type="url"
                 value={formData.photo_url || ''}
                 onChange={(e) => handleChange('photo_url', e.target.value || null)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent placeholder-gray-400"
                 placeholder="https://example.com/photo.jpg"
               />
             </div>
@@ -309,22 +311,22 @@ export function CyclistForm({ onNavigate }: CyclistFormProps) {
               <button
                 type="submit"
                 disabled={saving}
-                className="flex-1 flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 flex items-center justify-center gap-2 bg-primary text-gray-900 px-6 py-3 rounded-lg hover:bg-primary/80 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Save className="w-5 h-5" />
-                {saving ? 'Saving...' : 'Save Cyclist'}
+                {saving ? 'Enregistrement...' : 'Enregistrer le coureur'}
               </button>
               <button
                 type="button"
                 onClick={() => {
-                  if (confirm('Are you sure you want to cancel?')) {
+                  if (confirm('Êtes-vous sûr de vouloir annuler ?')) {
                     localStorage.removeItem(FORM_STORAGE_KEY);
                     onNavigate({ view: 'cyclists', action: 'list' });
                   }
                 }}
-                className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+                className="px-6 py-3 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors font-medium"
               >
-                Cancel
+                Annuler
               </button>
             </div>
           </form>

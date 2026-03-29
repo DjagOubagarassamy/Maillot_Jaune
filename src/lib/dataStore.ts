@@ -1,3 +1,4 @@
+/* Couche de persistance localStorage : CRUD pour coureurs, courses et résultats de course */
 import type { Cyclist, Race, RaceResult } from '../types';
 import initialCyclists from '../data/cyclists.json';
 import initialRaces from '../data/races.json';
@@ -29,7 +30,7 @@ function generateId(): string {
   return Date.now().toString(36) + Math.random().toString(36).slice(2);
 }
 
-// --- Cyclists ---
+// --- Les couereurs ---
 
 export function getCyclists(): Cyclist[] {
   return loadFromStorage<Cyclist>(STORAGE_KEYS.cyclists, initialCyclists as Cyclist[]);
@@ -52,13 +53,13 @@ export function deleteCyclist(id: string): boolean {
   const filtered = cyclists.filter(c => c.id !== id);
   if (filtered.length === cyclists.length) return false;
   saveToStorage(STORAGE_KEYS.cyclists, filtered);
-  // Also remove associated race results
+  // Enleve  même temps les résultats de course du coureur
   const results = getRaceResults().filter(r => r.cyclist_id !== id);
   saveToStorage(STORAGE_KEYS.raceResults, results);
   return true;
 }
 
-// --- Races ---
+// --  Courses
 
 export function getRaces(): Race[] {
   return loadFromStorage<Race>(STORAGE_KEYS.races, initialRaces as Race[]);
@@ -81,13 +82,12 @@ export function deleteRace(id: string): boolean {
   const filtered = races.filter(r => r.id !== id);
   if (filtered.length === races.length) return false;
   saveToStorage(STORAGE_KEYS.races, filtered);
-  // Also remove associated race results
   const results = getRaceResults().filter(r => r.race_id !== id);
   saveToStorage(STORAGE_KEYS.raceResults, results);
   return true;
 }
 
-// --- Race Results ---
+// --- Résultats de courses
 
 export function getRaceResults(): RaceResult[] {
   return loadFromStorage<RaceResult>(STORAGE_KEYS.raceResults, initialRaceResults as RaceResult[]);

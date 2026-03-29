@@ -1,5 +1,6 @@
-import { Bike, Trophy, Users, TrendingUp } from 'lucide-react';
+import { Bike, Trophy } from 'lucide-react';
 import type { RouteParams } from '../hooks/useRouter';
+import { NewsCarousel } from './NewsCarousel';
 
 interface HomeProps {
   onNavigate: (params: RouteParams) => void;
@@ -9,88 +10,69 @@ export function Home({ onNavigate }: HomeProps) {
   const features = [
     {
       icon: Bike,
-      title: 'Professional Cyclists',
-      description: 'Browse and manage profiles of professional cyclists from around the world.',
+      title: 'Coureurs Pro',
+      description: 'Parcourez et gérez les profils de coureurs cyclistes pro du monde entier.',
       action: () => onNavigate({ view: 'cyclists', action: 'list' }),
-      buttonText: 'View Cyclists',
+      buttonText: 'Voir les coureurs',
     },
     {
       icon: Trophy,
-      title: 'Race Results',
-      description: 'Track race events and view detailed results and rankings.',
+      title: 'Courses',
+      description: 'Suivez les épreuves et consultez les résultats détaillés et les classements.',
       action: () => onNavigate({ view: 'races', action: 'list' }),
-      buttonText: 'View Races',
+      buttonText: 'Voir les courses',
     },
   ];
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-gradient-to-br from-blue-50 via-white to-blue-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-16">
+    <div className="bg-gray-950">
+      <div className="relative h-screen">
+        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
+          <source src='/video_home_hd.mp4' type='video/mp4'/>
+        </video>
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
           <div className="flex justify-center mb-6">
-            <div className="bg-blue-600 p-4 rounded-full">
-              <Bike className="w-16 h-16 text-white" />
-            </div>
           </div>
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
-            Professional Cycling Showcase
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Your comprehensive database for professional cycling. Track cyclists, teams, and race results all in one place.
+          <h1
+            className="font-perso-titre text-9xl font-bold text-white mb-4 inline-block"
+          >
+            Maillot <span style={{color: "#ffee93"}}>Jaune</span></h1>
+          <p className="text-xl text-white/80 mt-2 max-w-2xl mx-auto">
+            Votre base de données sur les courses & les coureurs.
           </p>
         </div>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow"
+              className="bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-700 hover:shadow-xl transition-shadow"
             >
               <div className="flex items-center gap-4 mb-4">
-                <div className="bg-blue-100 p-3 rounded-lg">
-                  <feature.icon className="w-8 h-8 text-blue-600" />
-                </div>
-                <h2 className="text-2xl font-bold text-gray-900">{feature.title}</h2>
+                <h2 className="font-perso text-2xl font-bold text-white">{feature.title}</h2>
               </div>
-              <p className="text-gray-600 mb-6 leading-relaxed">{feature.description}</p>
+              <p className="text-gray-400 mb-6 leading-relaxed">{feature.description}</p>
               <button
-                onClick={feature.action}
-                className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                onClick={() => {
+                  window.scrollTo({ top: 0});
+                  feature.action();
+                }}
+                className="w-full bg-primary text-gray-900 py-3 px-6 rounded-lg font-medium hover:bg-primary/80 transition-colors"
               >
                 {feature.buttonText}
               </button>
             </div>
           ))}
         </div>
-
-        <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-            <TrendingUp className="w-7 h-7 text-blue-600" />
-            Key Features
+        <div className="mb-16">
+          <h2 className="font-perso text-2xl font-bold text-white mb-2">
+            Actualités Cyclisme
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="flex items-start gap-3">
-              <Users className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-1">Cyclist Profiles</h3>
-                <p className="text-sm text-gray-600">Detailed information including team, specialty, physical stats, and career history.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <Trophy className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-1">Race Management</h3>
-                <p className="text-sm text-gray-600">Create and manage races with complete result tracking and rankings.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <Bike className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-1">Real-time Updates</h3>
-                <p className="text-sm text-gray-600">Add, edit, and delete entries with instant updates across the platform.</p>
-              </div>
-            </div>
-          </div>
+          <p className="text-gray-500 text-sm mb-6">Les dernières actualités via <span className="font-medium text-gray-400">CyclingNews.com</span></p>
+          <NewsCarousel />
         </div>
       </div>
     </div>

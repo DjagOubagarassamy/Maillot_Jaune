@@ -1,3 +1,4 @@
+/* Composant racine : routeur hash + layout principal (Navigation + vue courante) */
 import { useRouter } from './hooks/useRouter';
 import { Navigation } from './components/Navigation';
 import { Home } from './components/Home';
@@ -47,9 +48,21 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-950 flex flex-col">
       <Navigation currentRoute={route} onNavigate={navigate} />
-      <main>{renderView()}</main>
+      <main className="flex-1">{renderView()}</main>
+      <footer className="bg-gray-900 border-t border-gray-800 py-4 text-center text-sm text-gray-400">
+        © 2026 — Conçu par{' '}
+        <a
+          href="https://djag.info"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:underline"
+        >
+          Djag.O  
+        </a>
+        <span className='block mt-5'>Réalisé dans le cadre du Module IHM - Master Gphy</span>
+      </footer>
     </div>
   );
 }
