@@ -62,8 +62,8 @@ npm install
 npm run dev
 ```
 
-Ce n'est pas nécessaire étant donné que le site est déjà en ligne à l'URL suivante : 
-
+Il est ensuite disponible à l'URL Suivante : http://localhost:5173
+Ce n'est pas nécessaire étant donné que le site est déjà en ligne à l'URL suivante : https://djagoubagarassamy.github.io/Maillot_Jaune/
 
 ## Technologies
 
